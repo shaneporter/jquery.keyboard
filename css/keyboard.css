@@ -1,0 +1,14 @@
+.keyboard { margin-bottom: 2em; font-size: 12pt; background: url( ../img/keyboardbg.gif) top left no-repeat; width: 284px; height: 111px; padding: 8px 0 0 27px; }
+.keyboard a { width: 1.5em; height: 1.5em; border: 1px solid #444; display: block; text-align: center; text-decoration: none; float: left; margin: 0 0.1em 0.1em 0; line-height: 1.5em; background-color: black; color: white; font-size: 14px; }
+.keyboard div { clear: left; }
+.keyboard a.characterset { width: 4em; }
+.keyboard a.space { width: 9em; }
+.keyboard a.select { width: 4em; }
+.keyboard a.inverse { background: #fff; color: black; border: 1px solid #000; }
+.mid { margin-left: 1em; }
+.hidden { display: none; }
+a.shift { margin-right: 0.8em; }
+a.backspace { margin-left: 1.1em; }
+.bottom { margin-left: 2.2em; }
+.keyboard a { background: black url( ../img/keyboardkeybg.gif) 0 50% repeat-x; }
+.keyboard_trigger { cursor: hand; position: absolute;  }
