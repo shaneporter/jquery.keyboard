@@ -57,7 +57,7 @@
 
             var isInverse = $(this).hasClass('inverse');
 
-            $(keyboard).find('a:not(.shift,.backspace,.characterset,.space,.select)').each(function(e) {
+            $(keyboard).find('a:not(.shift,.backspace,.characterset,.space,.select)').each(function() {
                 $(this).text($(this).text()[isInverse ? 'toLowerCase' : 'toUpperCase']());
             });
 
