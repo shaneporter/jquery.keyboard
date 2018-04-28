@@ -55,34 +55,26 @@
         });
 
         // shift key:
-        $(keyboard).find("a.shift").toggle(
-            function() {
-                $(keyboard).find("a:not(.shift,.backspace,.characterset,.space,.select)").each(function(e) {
-                    $(this).text($(this).text().toUpperCase());
-                });
+        $(keyboard).find("a.shift").click(function() {
 
-                $(this).toggleClass("inverse");
-            },
-            function() {
-                $(keyboard).find("a:not(.shift,.backspace,.characterset,.space,.select)").each(function(e) {
-                    $(this).text($(this).text().toLowerCase());
-                });
+            var isInverse = $(this).hasClass('inverse');
 
-                $(this).toggleClass("inverse");
-            }
-        )
+            $(keyboard).find("a:not(.shift,.backspace,.characterset,.space,.select)").each(function(e) {
+                $(this).text($(this).text()[isInverse ? 'toLowerCase' : 'toUpperCase']());
+            });
+
+            $(this).toggleClass("inverse");
+        });
 
         // character set shift:
-        $(keyboard).find("a.characterset").toggle(
-            function() {
-                $(keyboard).find("div:not(.control)").toggleClass("hidden");
-                $(this).text("abc");
-            },
-            function() {
-                $(keyboard).find("div:not(.control)").toggleClass("hidden");
-                $(this).text(".?123");
-            }
-        );
+        $(keyboard).find("a.characterset").click(function() {
+            var areCharactersShown = $(this).hasClass('charactersShown');
+
+            $(keyboard).find("div:not(.control)").toggleClass("hidden");
+            $(this).text(areCharactersShown ? "abc" : ".?123");
+
+            $(this).toggleClass("charactersShown");
+        });
 
         // close:
         $(keyboard).find("a.select").bind("click", function() {
