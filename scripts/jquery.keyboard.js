@@ -21,65 +21,67 @@
 
         // trigger click event:
         $(trigger).click(function() {
-            positionDetails = {
+            $(keyboard).css({
                 'top': $(this).offset().top + opts.topOffset,
                 'left': $(this).offset().left + opts.leftOffset
-            };
-
-            $(keyboard).css(positionDetails);
-            $(keyboard).toggle(1);
-            return false;
+            });
+            $(keyboard).toggle();
         });
 
         // bind keyboard characters:        
         $(keyboard).find('a:not(.shift,.backspace,.characterset,.space,.select)').bind('click', function(e) {
             $(input).val($(input).val() + $(this).text());
-            return false;
+            e.preventDefault();
         });
 
         // space bar:
-        $(keyboard).find("a.space").bind("click", function(e) {
-            $(input).val($(input).val() + " ");
-            return false;
+        $(keyboard).find('a.space').bind('click', function(e) {
+            $(input).val($(input).val() + ' ');
+            e.preventDefault();
         });
 
         // backspace:            
-        $(keyboard).find("a.backspace").bind("click", function(e) {
+        $(keyboard).find('a.backspace').bind('click', function(e) {
             var currentValue = $(input).val();
 
             if (currentValue.length == 0)
                 return false;
 
             $(input).val(currentValue.substr(0, currentValue.length - 1));
-            return false;
+
+            e.preventDefault();
         });
 
         // shift key:
-        $(keyboard).find("a.shift").click(function() {
+        $(keyboard).find('a.shift').click(function(e) {
 
             var isInverse = $(this).hasClass('inverse');
 
-            $(keyboard).find("a:not(.shift,.backspace,.characterset,.space,.select)").each(function(e) {
+            $(keyboard).find('a:not(.shift,.backspace,.characterset,.space,.select)').each(function(e) {
                 $(this).text($(this).text()[isInverse ? 'toLowerCase' : 'toUpperCase']());
             });
 
-            $(this).toggleClass("inverse");
+            $(this).toggleClass('inverse');
+
+            e.preventDefault();
         });
 
         // character set shift:
-        $(keyboard).find("a.characterset").click(function() {
+        $(keyboard).find('a.characterset').click(function(e) {
             var areCharactersShown = $(this).hasClass('charactersShown');
 
-            $(keyboard).find("div:not(.control)").toggleClass("hidden");
-            $(this).text(areCharactersShown ? "abc" : ".?123");
+            $(keyboard).find('div:not(.control)').toggleClass('hidden');
+            $(this).text(areCharactersShown ? 'abc' : '.?123');
 
-            $(this).toggleClass("charactersShown");
+            $(this).toggleClass('charactersShown');
+
+            e.preventDefault();
         });
 
         // close:
-        $(keyboard).find("a.select").bind("click", function() {
+        $(keyboard).find('a.select').bind('click', function(e) {
             $(keyboard).hide();
-            return false;
+            e.preventDefault();
         });
 
         // document click function:
@@ -87,7 +89,7 @@
 
             var $clicked = $(e.target); // get the element clicked
 
-            if (!$clicked.is('.keyboard') && !$clicked.parents().is('.keyboard')) {
+            if (!$clicked.is('.keyboard') && !$clicked.parents().is('.keyboard') && !$clicked.is('.keyboard_trigger')) {
                 $(keyboard).hide();
             }
         });
